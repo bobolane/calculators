@@ -54,5 +54,27 @@ elif conduit_type == 'pvc':
 	print('\n\n--------\n\nConduit fill:\n%.3f%% in %s PVC.' %
 	(final[0],final[1]))
 	
-	
+# allows user to manually select conduit trade size and calculates
+# fill percentage based on variable inputs from earlier
+print('\n--------\n\nFor manual conduit sizing using above conductor variables, press')
+enter = input('ENTER: ')
+
+conduit_type_manual = input('Conduit Type: ')
+conduit_size_manual = input('Conduit Trade Size: ')
+
+if conduit_type_manual == 'emt':
+	conduit_type_manual = conduit_type_manual.upper()
+	for key, value in NECTables.emt_dict.items():
+		if value == conduit_size_manual:
+			manual = (area / key) * 100
+			
+if conduit_type_manual == 'pvc':
+	conduit_type_manual = conduit_type_manual.upper()
+	for key, value in NECTables.pvc_dict.items():
+		if value == conduit_size_manual:
+			manual = (area / key) * 100
+
+print('\n--------\n\nConduit fill:\n%.2f%% in %s %s.' %
+(manual, conduit_size_manual, conduit_type_manual))
+
 	
